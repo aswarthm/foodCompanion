@@ -1,12 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script type="module" src="app.js"></script>
-</body>
+    <title></title>
+  </head>
+  <body>
+  
+    <section id="title">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg">
+          <img src="images/humanity.png" alt="" class="humanity_pic" id="imgHum">	
+          <h1 class="h1-title"><strike>Digital</strike> Biological wellbeing</h1>
+
+          <button class="navbar-toggler navbar-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav" id="ul-nav">
+              <li class="nav-item">
+                <a class="nav-link topics" href="#">Home <span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link topics" href="#timeline">Tracker</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link topics" href="#ddBtn">Submissions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link topics" href="/registrations.html">Applications</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="row">
+          <div class="col-lg-6">
+            <h1 class="h3-title" style="color:#fcfcfc;">Meet your next favourite book</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="Volunteer">
+      <div class="Details" >
+        <div class="photo_volunteer"style="float:left">
+          <img src="images/woman.jpg" alt="" class="photo shadow-lg mb-5 bg-white">
+        </div>
+        <div class="name"style="float">
+          <h2 class="Volunteer_name" id="volName">Name</h2>
+          <h5 class="Volunteer_name" id="volAge">Age: </h5>
+          <h5 id="numKids">Weight: </h5>
+          <h5 id="numKids">Height: </h5>
+          <h5 id="numKids">BMI: </h5>
+        </div>
+      </div>
+    </section>
+    <div class=""style="clear:both">
+    </div>
+    <section>
+      <div id="timeline" style="width:95%; padding-left:34px; padding-right: 20px; height: 400px;"></div>
+  </section>
+  <div id="alert" role="alert" class=""></div>
+    <section id="Studentaccept">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="card shadow-lg" style="border-radius: 15px;">
+            <div class="card-header">
+              <h3 class="h3-pricing" style="color:#ffffff ;">Submissions</h3>
+            </div>
+            <div class="card-body">
+              <div class="dropdown" id="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="ddBtn"  style="background-color:#1fa3ff ;">
+                  Select Kid
+                  </button>
+                <ul class="dropdown-menu" id="ddKids">
+                </ul>
+                <a class="p-pricing" id="aMoreInfo" href="#" >More Info</a>
+              </div>
+              <p class="p-pricing" id="pCurrBook">Current book:</p>
+              <p class="p-pricing" id="pStTime">Start Time:</p>
+              <div>
+
+                <button class="btn btn-warning  extend" type="button" id="btnExtend">Extend</button>
+                <button class="btn btn-success  accept" type="button" id="btnAccept">Accept</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card shadow-lg" style="border-radius: 15px;">
+            <div class="card-header">
+              <h3 class="h3-pricing" style="color:#ffffff ;">Intervention Required</h3>
+            </div>
+            <div class="card-body" id="divHitlist">
+          </div>
+        </div>
+      </div>
+      
+        
+    </section>
+    <div style="padding-left: 10px; padding-top:30px;">Made with ❤ by Aswarth, Shishira, Bharath, Pulkit</div>
+    <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module" src="app.js"></script>
+    <script src="confetti.js"></script>
+    <script type="text/JavaScript" src="main.js"></script>
+  </body>
 </html>
