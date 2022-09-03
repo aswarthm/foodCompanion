@@ -93,7 +93,7 @@ function drawTitleSubtitle(nutname,nutmax, nuttod) {
         },
         hAxis: {
           title: 'Total Population',
-          minValue: 50,
+          minValue: 0,
         },
         vAxis: {
           title: 'City'
