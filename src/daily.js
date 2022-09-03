@@ -21,58 +21,88 @@
  const database = getDatabase(app);
 
  const dbRef = ref(getDatabase());
- get(child(dbRef, '/volunteer')).then((snapshot) => {
-	console.log(snapshot.val());
- });
+//  get(child(dbRef, '/volunteer')).then((snapshot) => {
+// 	console.log(snapshot.val());
+//  });
 
- 
 
- function drawWeekly(){
+ function getDailyData(){
 
-	const db = getDatabase();
+  const db = getDatabase();
   const dbRef = ref(getDatabase());
 	get(child(dbRef, "/")).then((snapshot) => {
 	var stuff = snapshot.val()
 	var data = stuff["users"]["sindhu"]
 	var curDate = new Date()
-	//console.log(curDate)
-	
-	// console.log("a", curDate.valueOf())
-
-
-	// console.log("b", new Date(1662212590000 - 3*24*60*60*1000))
-
-
 
 	var month_year = (curDate.getMonth() + 1) + "-"+ curDate.getFullYear()
 	var date = curDate.getDate()
+	
 
-	//console.log(month_year, date)
-
-	for (var hour_min in data[month_year][date]){
+	var dailyCalories = 0
+	var dailyProtein = 0
+	var dailyTotFat = 0
+	var dailySatFat = 0
+	var dailySugar = 0 
+	
+	//console.log(data[month_year][date])
+	
+	
+	for (var hour_min in data[month_year][date]){		
 		
-		var hour = hour_min.split("-")[0]
-		var min = hour_min.split("-")[1]
-		console.log(hour,min)
 		var foodNum = data[month_year][date][hour_min]
-		console.log(stuff["cards"][foodNum]["name"])
+		//console.log(hour_min, foodNum)
+		console.log(foodNum,stuff["cards"][foodNum]["fat"])
 
-
-
+		dailyCalories +=  parseFloat(stuff["cards"][foodNum]["calories"])
+		dailyProtein +=  parseFloat(stuff["cards"][foodNum]["proteins"])
+		dailyTotFat +=  parseFloat(stuff["cards"][foodNum]["fat"])
+		dailySatFat +=  parseFloat(stuff["cards"][foodNum]["fatsat"])
+		dailySugar +=  parseFloat(stuff["cards"][foodNum]["sugar"])
+		
 	}
 
-	
+	var bigdata = {"Calorie": {"max":2500, "today":dailyCalories}, "Protein":{"max":56, "today":dailyProtein}, "Total Fat":{"max":20,"today":dailyTotFat}, "Saturated Fat": {"max":10,"today":dailySatFat}, "Sugar": {"max":36,"today": dailySugar}}
+	for (var smaldata in bigdata){
+		drawTitleSubtitle(smaldata, bigdata[smaldata]["max"], bigdata[smaldata]["today"])
 
-
-	//console.log(data[month_year])
-	//console.log(data[month_year][date])
-
-	
-
-
-
-
-
+		
+	}
  });
 }
-drawWeekly()
+// getDailyData()
+
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(getDailyData);
+
+function drawTitleSubtitle(nutname,nutmax, nuttod) {
+	
+
+      var data = google.visualization.arrayToDataTable([
+        ['Nutrient', 'Recommended amount', 'Consumed amount'],
+        [nutname, nutmax, nuttod]
+        
+
+      ]);
+
+      var materialOptions = {
+        chart: {
+          title: nutname,
+          subtitle: ''
+        },
+        hAxis: {
+          title: 'Total Population',
+          minValue: 50,
+        },
+        vAxis: {
+          title: 'City'
+        },
+        bars: 'horizontal',
+      
+      };
+      var materialChart = new google.charts.Bar(document.getElementById(nutname));
+      materialChart.draw(data, materialOptions);
+    }
+
+		//0611
