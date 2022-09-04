@@ -86,6 +86,17 @@ function dataURLtoBlob(dataurl) {
     var month_year = (curDate.getMonth() + 1) + "-"+ curDate.getFullYear()
 	var date = curDate.getDate()
     var hour_min = curDate.getHours() + "-" + curDate.getMinutes()
+
+    document.getElementById("calories").innerHTML = "Calories : " + parseFloat(dataapi["calories"]).toFixed(1)
+    document.getElementById("proteins").innerHTML = "Protein : " + parseFloat(dataapi["proteins"]).toFixed(1)
+    document.getElementById("fats").innerHTML = "Total Fats : " + parseFloat(dataapi["total_fat"]).toFixed(1)
+    document.getElementById("fatsat").innerHTML = "Saturated Fats : " + parseFloat(dataapi["sat_fat"]).toFixed(1)
+    document.getElementById("sugar").innerHTML = "Sugars : " + parseFloat(dataapi["sugar"]).toFixed(1)
+
+
+
+
+
     
     
     set(ref(db, "cards/" + dataapi["food_id"]), {
