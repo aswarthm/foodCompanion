@@ -81,9 +81,9 @@ function dataURLtoBlob(dataurl) {
 
  function writeToFirebase(dataapi){               //////////
 
-    const db = getDatabase();
-    var curDate = new Date()
-    var month_year = (curDate.getMonth() + 1) + "-"+ curDate.getFullYear()
+  const db = getDatabase();
+  var curDate = new Date()
+  var month_year = (curDate.getMonth() + 1) + "-"+ curDate.getFullYear()
 	var date = curDate.getDate()
     var hour_min = curDate.getHours() + "-" + curDate.getMinutes()
 
@@ -93,12 +93,6 @@ function dataURLtoBlob(dataurl) {
     document.getElementById("fatsat").innerHTML = "Saturated Fats : " + parseFloat(dataapi["sat_fat"]).toFixed(1)
     document.getElementById("sugar").innerHTML = "Sugars : " + parseFloat(dataapi["sugar"]).toFixed(1)
 
-
-
-
-
-    
-    
     set(ref(db, "cards/" + dataapi["food_id"]), {
         "calories": parseFloat(dataapi["calories"]).toFixed(1),
         "fat" : parseFloat(dataapi["total_fat"]).toFixed(1),
@@ -147,6 +141,7 @@ function getCal(imageId){
         dataapi["sugar"]=js["nutritional_info"]["totalNutrients"]["SUGAR"]["quantity"]
 
         writeToFirebase(dataapi)
+        beep_beep()
         
         console.log(dataapi)
       })
@@ -155,3 +150,26 @@ function getCal(imageId){
              ////////
 }
 
+function beep_beep(){
+  const db = getDatabase();
+  const dbRef = ref(getDatabase());
+	get(child(dbRef, "/")).then((snapshot) => {
+	var stuff = snapshot.val()
+	var data = stuff["users"]["sindhu"]
+	var curDate = new Date()
+
+	var month_year = (curDate.getMonth() + 1) + "-"+ curDate.getFullYear()
+	var date = curDate.getDate()
+
+  var dailyCalories = 0;
+  for (var hour_min in data[month_year][date]){		
+		var foodNum = data[month_year][date][hour_min]
+		dailyCalories +=  parseFloat(stuff["cards"][foodNum]["calories"])
+}
+if (dailyCalories>=2500){
+  set(ref(db, "/beep-beep"), 1)
+
+}
+
+})
+}
