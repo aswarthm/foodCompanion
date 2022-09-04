@@ -139,6 +139,7 @@ function getCal(imageId){
         dataapi["sat_fat"]=js["nutritional_info"]["totalNutrients"]["FASAT"]["quantity"]
         dataapi["total_fat"]=js["nutritional_info"]["totalNutrients"]["FAT"]["quantity"]
         dataapi["sugar"]=js["nutritional_info"]["totalNutrients"]["SUGAR"]["quantity"]
+        
 
         writeToFirebase(dataapi)
         beep_beep()
@@ -168,6 +169,7 @@ function beep_beep(){
 }
 if (dailyCalories>=2500){
   set(ref(db, "/beep-beep"), 1)
+  alert("Too many calories")
 
 }
 
