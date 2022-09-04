@@ -9,6 +9,10 @@ document.getElementById("upload").onchange = function (e) {
     var file = document.getElementById("upload").files[0];
     var reader = new FileReader();
     reader.onload = function () {
+        var blob = dataURLtoBlob(reader.result);
+        document.getElementById("imgShow").src=reader.result
+        document.getElementById("imgShow").style = "width: 40vw;padding: 20px;border-radius: 10px;"
+        //document.getElementById("imgShow").style = "width:40vw; border-radius: 10px;"
         //console.log(reader.result);
         //console.log(blob, new File([blob], "image.png", {type: "image/png"}));
         var formdata = new FormData();

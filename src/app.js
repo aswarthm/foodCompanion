@@ -112,8 +112,8 @@ function drawWeekly() {
         rows[rows.length] = [
           days[tempDate.getDay()],
           stuff["cards"][foodNum]["name"],
-		  new Date(0,0,0,hour,0,0,0),
-		  new Date(0,0,0,hour,60,0,0),
+		  new Date(0,0,0,hour,min,0,0),
+		  new Date(0,0,0,hour,min,3600,0),
         ];
         //console.log(rows);
       }

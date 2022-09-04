@@ -123,7 +123,7 @@
   padding-right: 60px;
 }
 .humanity_pic{
-  width: 200px;
+  width: 100px;
   height: 100px;
 }
 .info{
@@ -170,4 +170,10 @@
 .daily{
   padding: 20px;
   padding-top: 80px;
+}
+
+.imgShow{
+  width: 40vw;
+  padding: 20px;
+  border-radius: 10px;
 }
