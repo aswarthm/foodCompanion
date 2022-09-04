@@ -62,7 +62,7 @@
 		
 	}
 
-	var bigdata = {"Calorie": {"max":2500, "today":dailyCalories}, "Protein":{"max":56, "today":dailyProtein}, "Total Fat":{"max":20,"today":dailyTotFat}, "Saturated Fat": {"max":10,"today":dailySatFat}, "Sugar": {"max":36,"today": dailySugar}}
+	var bigdata = {"Calorie": {"max":2500, "today":dailyCalories}, "Protein":{"max":56, "today":dailyProtein}, "Total Fat":{"max":100,"today":dailyTotFat}, "Saturated Fat": {"max":10,"today":dailySatFat}, "Sugar": {"max":36,"today": dailySugar}}
 	for (var smaldata in bigdata){
 		drawTitleSubtitle(smaldata, bigdata[smaldata]["max"], bigdata[smaldata]["today"])
 
