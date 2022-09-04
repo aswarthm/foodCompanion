@@ -90,14 +90,12 @@ void loop() {
   if (cardPresent) {
     Serial.println("New card detected, processing...");
     int id = getID(a) + 1; //because 0 based indexing
-    if(id != 1){
     led(id);
     Serial.println("Card ID: " + String(id));
     getTime();
     Firebase.set(firebaseData, "/users/sindhu/" + monthYr + "/" + curDay + "/" + hrMin, id);
     Serial.println(a);
     led(-1);
-    }
     cardPresent = false;
   }
 }
