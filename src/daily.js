@@ -88,7 +88,7 @@ function drawTitleSubtitle(nutname,nutmax, nuttod) {
 
       var materialOptions = {
         chart: {
-          title: "nutname",
+          title: nutname,
           subtitle: ''
         },
         hAxis: {
