@@ -3,14 +3,13 @@ var submit = document.getElementById("submit")
 var myHeaders = new Headers();
 
 var formdata = new FormData();
-myHeaders.append("Authorization", "Bearer acd0c81805a8006314a745c0afc40dd32a1d1f79");
+myHeaders.append("Authorization", "Bearer d7e98fde426ad83a871363ff7daa5669b1e5000a");
 
 document.getElementById("upload").onchange = function (e) {
     var file = document.getElementById("upload").files[0];
     var reader = new FileReader();
     reader.onload = function () {
         //console.log(reader.result);
-        var blob = dataURLtoBlob(reader.result);
         //console.log(blob, new File([blob], "image.png", {type: "image/png"}));
         var formdata = new FormData();
         formdata.append("image", blob, "/C:/Users/Bharath Reddy/Desktop/ICHACK/masala-dosa-2.jpg");
@@ -50,7 +49,7 @@ function dataURLtoBlob(dataurl) {
 
 function getCal(imageId){
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer acd0c81805a8006314a745c0afc40dd32a1d1f79");
+    myHeaders.append("Authorization", "Bearer d7e98fde426ad83a871363ff7daa5669b1e5000a  ");
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
