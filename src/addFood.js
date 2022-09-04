@@ -3,7 +3,7 @@ var submit = document.getElementById("submit")
 var myHeaders = new Headers();
 
 var formdata = new FormData();
-myHeaders.append("Authorization", "Bearer acd0c81805a8006314a745c0afc40dd32a1d1f79");
+myHeaders.append("Authorization", "Bearer d7e98fde426ad83a871363ff7daa5669b1e5000a");
 
 document.getElementById("upload").onchange = function (e) {
     var file = document.getElementById("upload").files[0];
@@ -48,9 +48,59 @@ function dataURLtoBlob(dataurl) {
     return new Blob([u8arr], { type: mime });
 }
 
+
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+  import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+ // Your web app's Firebase configuration
+ const firebaseConfig = {
+   apiKey: "AIzaSyBLYJTGB4TC5CWuUYNS4GcnyIevmz4HRKw",
+   authDomain: "biologicalwellbeing.firebaseapp.com",
+   databaseURL: "https://biologicalwellbeing-default-rtdb.firebaseio.com",
+   projectId: "biologicalwellbeing",
+   storageBucket: "biologicalwellbeing.appspot.com",
+   messagingSenderId: "52645826415",
+   appId: "1:52645826415:web:df3e22e25307066cdce29a"
+ };
+
+
+ // Initialize Firebase
+ const app = initializeApp(firebaseConfig);
+ const database = getDatabase(app);
+
+ const dbRef = ref(getDatabase());
+//  get(child(dbRef, '/volunteer')).then((snapshot) => {
+// 	console.log(snapshot.val());
+//  });
+
+ function writeToFirebase(dataapi){               //////////
+
+    const db = getDatabase();
+    var curDate = new Date()
+    var month_year = (curDate.getMonth() + 1) + "-"+ curDate.getFullYear()
+	var date = curDate.getDate()
+    var hour_min = curDate.getHours() + "-" + curDate.getMinutes()
+    
+    
+    set(ref(db, "cards/" + dataapi["food_id"]), {
+        "calories": parseFloat(dataapi["calories"]).toFixed(1),
+        "fat" : parseFloat(dataapi["total_fat"]).toFixed(1),
+        "fatsat" : parseFloat(dataapi["sat_fat"]).toFixed(1),
+        "name" : dataapi["name"],
+        "proteins": parseFloat(dataapi["proteins"]).toFixed(1),
+        "sugar" : parseFloat(dataapi["sugar"]).toFixed(1)
+
+    })
+
+    set(ref(db, "users/sindhu/" + month_year + "/" + date + "/" + hour_min), dataapi["food_id"])
+ }
+
 function getCal(imageId){
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer acd0c81805a8006314a745c0afc40dd32a1d1f79");
+    myHeaders.append("Authorization", "Bearer d7e98fde426ad83a871363ff7daa5669b1e5000a");
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
@@ -81,9 +131,13 @@ function getCal(imageId){
         dataapi["sat_fat"]=js["nutritional_info"]["totalNutrients"]["FASAT"]["quantity"]
         dataapi["total_fat"]=js["nutritional_info"]["totalNutrients"]["FAT"]["quantity"]
         dataapi["sugar"]=js["nutritional_info"]["totalNutrients"]["SUGAR"]["quantity"]
-        dataapi["time"]=new Date().valueOf();
+
+        writeToFirebase(dataapi)
+        
         console.log(dataapi)
       })
       .catch(error => console.log('error', error));
+
+             ////////
 }
 
