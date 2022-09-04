@@ -1,6 +1,6 @@
 *{
   scroll-padding-top: 125px;
-  
+
 }
 
 #title{
@@ -177,7 +177,15 @@
   padding: 20px;
   border-radius: 10px;
 }
+.yoga{
+  padding: 30px;
+  width: 500px;
+}
 .para{
   padding-right: 600px;
   padding-top: 30px;
+}
+.h2-extra{
+  font-size: 3.2rem;
+  padding: 30px;
 }
