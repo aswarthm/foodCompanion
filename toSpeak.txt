@@ -1,0 +1,17 @@
+home page, talk about timeline chart
+
+day page, talk about calories, recommended and consumed
+
+go home
+
+table and tell about items in the day
+
+home, add food 
+show example APPLE
+show home about apple added
+
+add lunch rfid
+explain hardware
+show everything in home and daily page
+
+add PIZZA show alert
