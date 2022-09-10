@@ -3,7 +3,7 @@ var submit = document.getElementById("submit")
 var myHeaders = new Headers();
 
 var formdata = new FormData();
-myHeaders.append("Authorization", "Bearer 070f200b39ff195c3b40ae1e9fc114de495ca76d");
+myHeaders.append("Authorization", "Bearer e56e4838fd68fbb76345e4f6595c0bb6b6bb547c");
 
 document.getElementById("upload").onchange = function (e) {
     var file = document.getElementById("upload").files[0];
@@ -108,7 +108,7 @@ function dataURLtoBlob(dataurl) {
 
 function getCal(imageId){
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer 070f200b39ff195c3b40ae1e9fc114de495ca76d");
+    myHeaders.append("Authorization", "Bearer e56e4838fd68fbb76345e4f6595c0bb6b6bb547c");
     myHeaders.append("Content-Type", "application/json");
     
     var raw = JSON.stringify({
