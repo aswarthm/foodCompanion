@@ -41,6 +41,7 @@ const dbRef = ref(getDatabase());
 
 
 var doctor = "Sindhu"
+var patient = "lol"
 
 function populateDropdown(){
     //id is doct name
@@ -59,13 +60,42 @@ function populateDropdown(){
 
 function makeDropdownWork(){
   document.getElementById("dropDown").addEventListener("change", function(){
-    console.log(document.getElementById("dropDown").value)
+    //console.log(document.getElementById("dropDown").value)
     drawWeekly(document.getElementById("dropDown").value)
+    document.getElementById("btnSearch").addEventListener("click", function(){
+      bookAppointment()
+    })               //Time input is taken only after doctor is chosen
   })
 }
 
-function takeTime(){
-  
+function bookAppointment(){
+  var doctor = document.getElementById("dropDown").value
+
+  var timeArr = document.getElementById("timeInput").value.split(":")
+  var time = timeArr[0]*60 + parseInt(timeArr[1])
+
+  var dateArr = document.getElementById("dateInput").value.split("-")
+  var month_year = dateArr[1] + "-" + dateArr[0]
+  var date = dateArr[2]
+
+  console.log(doctor, month_year, date, time)
+
+  get(child(dbRef, "/healthCare/doctors")).then((snapshot) => {
+
+
+
+  })
+
+
+
+  //convert time to proper format
+  //take date
+  //Check if slot is available in firebase
+  //If not give alert
+  //If available give alert
+  //Change firebase
+
+  //ALSO CHECK num of appmts
 }
 
 function drawWeekly(doctor) {
@@ -117,7 +147,11 @@ function drawWeekly(doctor) {
 
 
 const main = async () => {
-  document.getElementById("dateInput").value = new Date().toISOString().split('T')[0] 
+  document.getElementById("dateInput").value = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDate()
+  var hour = new Date().toTimeString().split(' ')[0].split(':')[0]
+  document.getElementById("timeInput").value = ((parseInt(hour) + 1) +":"+ "00").padStart(5,'0')
+
+
   
   populateDropdown()
   //makeDropdownWork()
