@@ -42,19 +42,19 @@ const dbRef = ref(getDatabase());
 
 var doctor = "Sindhu"
 
-function fillDoctorInfo(data){
-  document.getElementById("volName").innerHTML = "Doctor: " + doctor 
-  get
+function fillDoctorInfo(doctorData){
+  document.getElementById("docName").innerHTML = "Doctor: " + doctor 
+  document.getElementById("appPerDay").innerHTML = "Appointments per day: " + doctorData["appointmentsPerDay"]
 }
 
 
 
 function drawWeekly() {
   get(child(dbRef, "/healthCare")).then((snapshot) => {
-    
     var rows = [];
     var data = snapshot.val()
     var doctorData = data["doctors"][doctor];
+    fillDoctorInfo(doctorData)
     //console.log(doctorData)
     var curDate = new Date();
 
