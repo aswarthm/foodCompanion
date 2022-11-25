@@ -42,18 +42,38 @@ const dbRef = ref(getDatabase());
 
 var doctor = "Sindhu"
 
-function fillDoctorInfo(doctorData){
-  document.getElementById("docName").innerHTML = "Doctor: " + doctor 
-  document.getElementById("appPerDay").innerHTML = "Appointments per day: " + doctorData["appointmentsPerDay"]
+function populateDropdown(){
+    //id is doct name
+    get(child(dbRef, "/healthCare/doctors")).then((snapshot) => {
+        var data = snapshot.val()
+        
+        var htmlString = '<option value="0">'+ 'Select Doctor' +'</option>'
+
+        for (var doctorName in data){
+            htmlString += '<option value="' + doctorName + '">'+ doctorName +'</option>'
+        }
+        document.getElementById("dropDown").innerHTML = htmlString
+        makeDropdownWork()
+    })
 }
 
+function makeDropdownWork(){
+  document.getElementById("dropDown").addEventListener("change", function(){
+    console.log(document.getElementById("dropDown").value)
+    drawWeekly(document.getElementById("dropDown").value)
+  })
+}
 
-function drawWeekly() {
+function takeTime(){
+  
+}
+
+function drawWeekly(doctor) {
   get(child(dbRef, "/healthCare")).then((snapshot) => {
     var rows = [];
     var data = snapshot.val()
     var doctorData = data["doctors"][doctor];
-    fillDoctorInfo(doctorData)
+
     //console.log(doctorData)
     var curDate = new Date();
 
@@ -81,7 +101,7 @@ function drawWeekly() {
 
         rows[rows.length] = [
             days[tempDate.getDay()],
-            data["patients"][patientID]["name"],
+            "",
             new Date(0,0,0, parseInt(t/60), t%60, 0),
             new Date(0,0,0, parseInt((t+appointmentMins)/60), (t+appointmentMins)%60, 0)
         ]
@@ -97,27 +117,14 @@ function drawWeekly() {
 
 
 const main = async () => {
-  drawWeekly();
+  document.getElementById("dateInput").value = new Date().toISOString().split('T')[0] 
+  
+  populateDropdown()
+  //makeDropdownWork()
+  //drawWeekly();
   
 };
 google.charts.load("current", { packages: ["timeline"], callback: main }); //calls main after loading chart library
-
-
-
-
-
-
-
-
-
-
-
-
-// function testig(){
-//     console.log(doctor)
-// }
-// testig()
-
 
 
 
