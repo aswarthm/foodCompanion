@@ -25,10 +25,10 @@ const firebaseConfig = {
 
   const dbRef = ref(getDatabase());
 const form= document.querySelector(".form")
-var list_names=["username","password","name","dob","weight","height"]
+var list_names=["username","password","name","quali"]
 var list_values=[]
 if(form){
-    const fields=["username","password","name","dob","weight","height"]
+    const fields=["username","password","name","quali"]
     console.log(form,fields);
     check(form,fields);
 }
@@ -51,15 +51,13 @@ function check(form,fields){
             var userData = String(url.searchParams.get("id"))
             console.log(url);
 
-            set(ref(db,'/temp/users/'+ userData),{
+            set(ref(db,'/temp/doctors/'+ userData),{
                 "email":list_values[0],
                 "password":list_values[1],
                 "name":list_values[2],
-                "dob":list_values[3],
-                "weight":list_values[4],
-                "height":list_values[5]
+                "quali":list_values[3],
             })
-            window.location.replace("http://localhost:5500/src/index_login1.html?id="+userData);
+            window.location.replace("http://localhost:5500/src/healthCare/doctorPage.html?id="+userData)
             //form.submit()
         }
     })

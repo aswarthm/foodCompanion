@@ -120,8 +120,8 @@ var url = new URL(url_string);
 var userData = String(url.searchParams.get("id"))
 const snapshot = await get(child(dbRef, '/temp/users/'+ userData))
 console.log(snapshot.val())
-document.getElementById("volName").innerHTML=snapshot.val().name
-//document.getElementById("volAge").innerHTML=snapshot.age
-// document.getElementById("weight").innerHTML=snapshot.val().weight
+document.getElementById("volName").innerHTML="Name:"+snapshot.val().name
+document.getElementById("Weight").innerHTML="Weight:"+snapshot.val().weight
+document.getElementById("Height").innerHTML="Height:"+snapshot.val().height
 // document.getElementById("height").innerHTML=snapshot.val()  .height
 

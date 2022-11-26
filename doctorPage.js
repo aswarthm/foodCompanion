@@ -20,6 +20,110 @@ const firebaseConfig = {
   messagingSenderId: "52645826415",
   appId: "1:52645826415:web:df3e22e25307066cdce29a",
 };
+let auth0Client = null;
+const app = initializeApp(firebaseConfig);
+  
+  const database = getDatabase(app);
+
+
+  const dbRef = ref(getDatabase());
+// ..
+
+const fetchAuthConfig = () => fetch("/auth_config.json");
+// ..
+
+console.log("ok")
+const configureClient = async () => {
+  const response = await fetchAuthConfig();
+  const config = await response.json();
+  
+  auth0Client = await auth0.createAuth0Client({
+    domain: config.domain,
+    clientId: config.clientId
+  });
+};
+// ..
+
+
+window.onload = async () => {
+  await configureClient();
+  // NEW - update the UI state
+  updateUI();
+  const isAuthenticated = await auth0Client.isAuthenticated();
+    console.log(isAuthenticated)
+  if (isAuthenticated) {
+    // show the gated content
+    return;
+  }
+
+  // // NEW - check for the code and state parameters
+  // const query = window.location.search;
+  // if (query.includes("code=") && query.includes("state=")) {
+
+  //   // Process the login state
+  //   await auth0Client.handleRedirectCallback();
+
+  //   updateUI();
+
+  //   // Use replaceState to redirect the user away and remove the querystring parameters
+  //   window.history.replaceState({}, document.title, "/");
+  // }
+};
+
+document.getElementById("logout").addEventListener("click",function(){
+  console.log("clicccc")
+  logout();
+})
+
+
+const login = async () => {
+  await auth0Client.loginWithRedirect({
+    authorizationParams: {
+      redirect_uri: window.location.origin
+    }
+  });
+};
+const logout = () => {
+  auth0Client.logout({
+    logoutParams: {
+      returnTo: window.location.replace("http://localhost:5500/register.html")
+    }
+  });
+};
+const updateUI = async () => {
+  const isAuthenticated = await auth0Client.isAuthenticated();
+
+  // NEW - add logic to show/hide gated content after authentication
+  if (isAuthenticated) {
+    // document.getElementById("gated-content").classList.remove("hidden");
+
+    // document.getElementById(
+    //   "ipt-access-token"
+    // ).innerHTML = await auth0Client.getTokenSilently();
+    // const userData = await auth0Client.getUser()
+    // //console.log(userData.sub)
+    // const snapshot = await get(child(dbRef, '/temp/users'+ userData.sub))
+    // if(snapshot.val()){
+        
+    // }
+    // else{
+    //     window.location.replace("http://127.0.0.1:5500/register.html")
+    // }
+    // document.getElementById("ipt-user-profile").textContent = userData.sub
+
+  } else {
+    // document.getElementById("gated-content").classList.add("hidden");
+  }
+};
+var url_string = (window.location.href);
+var url = new URL(url_string);
+var userData = String(url.searchParams.get("id"))
+const snapshot = await get(child(dbRef, '/temp/doctors/'+ userData))
+console.log(snapshot.val())
+document.getElementById("docName").innerHTML="Doctor:"+snapshot.val().name
+document.getElementById("numKids").innerHTML="Qualification:"+snapshot.val().quali
+// document.getElementById("weight").innerHTML=snapshot.val().weight
+// document.getElementById("height").innerHTML=snapshot.val()  .height
 
 var days = [
     "Sunday",
@@ -34,16 +138,12 @@ var days = [
 var appointmentMins = 15;
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
-const dbRef = ref(getDatabase());
 
 
 var doctor = "Sindhu"
 
 function fillDoctorInfo(doctorData){
-  document.getElementById("docName").innerHTML = "Doctor: " + doctor 
+  //document.getElementById("docName").innerHTML = "Doctor: " + doctor 
   document.getElementById("appPerDay").innerHTML = "Appointments per day: " + doctorData["appointmentsPerDay"]
 }
 

@@ -25,20 +25,15 @@ const firebaseConfig = {
 
   const dbRef = ref(getDatabase());
   var userData
-  document.getElementById("btn-login-customer").addEventListener("click",async function(){
-    localStorage.setItem("auth","btn-login-customer");
-    console.log("clic")
-    await login();
-  })
   document.getElementById("btn-login-doctor").addEventListener("click",async function(){
-    localStorage.setItem("auth","btn-login-doctor")
+    console.log("clic")
     await login();
   })
 
 let auth0Client = null;
 // ..
 
-const fetchAuthConfig = () => fetch("/auth_config.json");
+const fetchAuthConfig = () => fetch("/auth_config1.json");
 // ..
 
 const configureClient = async () => {
@@ -49,7 +44,6 @@ const configureClient = async () => {
     clientId: config.clientId
   });
 };
-console.log(auth0)
 // ..
 
 
@@ -97,14 +91,8 @@ const logout = () => {
 };
 const updateUI = async () => {
   const isAuthenticated = await auth0Client.isAuthenticated();
-  console.log(isAuthenticated)
-  if(localStorage.getItem("auth")=="btn-login-customer"){
-    document.getElementById("btn-login-customer").disabled = isAuthenticated;
-  }
-  else if(localStorage.getItem("auth")=="btn-login-doctor"){
-    document.getElementById("btn-login-doctor").disabled = isAuthenticated;
-  }
-  
+
+  document.getElementById("btn-login-doctor").disabled = isAuthenticated;
 
   // NEW - add logic to show/hide gated content after authentication
   if (isAuthenticated) {
@@ -115,29 +103,14 @@ const updateUI = async () => {
     // ).innerHTML = await auth0Client.getTokenSilently();
     userData = await auth0Client.getUser()
     //console.log(userData.sub)
-    if(localStorage.getItem("auth")=="btn-login-customer"){
-      const snapshot = await get(child(dbRef, '/temp/users/'+ userData.sub))
-    console.log(userData.sub)
-    if(snapshot.val()){
-        window.location.replace("http://localhost:5500/src/index_login1.html?id="+userData.sub)
-    }
-    else{
-        window.location.replace("http://localhost:5500/src/register.html?id="+userData.sub)
-    }
-    localStorage.removeItem("auth")
-    }
-    else if(localStorage.getItem("auth")=="btn-login-doctor"){
-      const snapshot = await get(child(dbRef, '/temp/doctors/'+ userData.sub))
+    const snapshot = await get(child(dbRef, '/temp/doctors/'+ userData.sub))
     console.log(userData.sub)
     if(snapshot.val()){
         window.location.replace("http://localhost:5500/src/healthCare/doctorPage.html?id="+userData.sub)
     }
     else{
-        window.location.replace("http://localhost:5500/src/healthCare/register_doctor.html?id="+userData.sub)
+        window.location.replace("http://localhost:5500/src//healthCare/register_doctor.html?id="+userData.sub)
     }
-    localStorage.removeItem("auth")
-    }
-    
     //document.getElementById("ipt-user-profile").textContent = userData.sub
 
   } else {
