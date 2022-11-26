@@ -1,0 +1,192 @@
+*{
+    scroll-padding-top: 125px;
+  
+  }
+  
+  #title{
+    background-color: #5463FF;
+    padding-bottom: 30px;
+    width: 100%
+  }
+  .RVlogo{
+    width: 110px;
+    height: 110px;
+    margin-right:  40px;
+  }
+  .logo-title{
+    font-family: "League Spartan";
+    color: white;
+    font-size: 3rem;
+  }
+  .logo-title:hover{
+    color:white;
+  }
+  #ul-nav{
+    width: 100%;
+    display:inline-block;
+    text-align: right;
+  }
+  #ul-nav li{
+    display: inline-block;
+    text-align: right;
+    padding-right: 20px;
+  }
+  .topics{
+    color: white;
+    font-size: 1.4rem;
+  }
+  .topics:hover{
+    color: #141E27;
+  }
+  .hr-in-title{
+    border-style: dotted none none none;
+    border-width: thick;
+    border-color: black;
+    height: 0;
+    background-color: inherit;
+    margin-bottom: 30px;
+    width: 80%;
+    position: relative;
+    left: 200px;
+  }
+  .h1-title{
+    padding-left: 30px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 3rem;
+    text-align: center;
+  }
+  .number-e{
+    height: 250px;
+    display:block;
+    margin:auto;
+  }
+  #Studentaccept{
+    padding-left: 25px;
+    font-family: "Roboto";
+    font-weight: bolder;
+  }
+  #pricing{
+    padding: 7% 15%;
+    font-family: "Montserrat";
+  }
+  .sign-up{
+    width: 200px;
+    margin-left: 50px;
+  }
+  .card-header{
+    background-color: #0096FF;
+    text-align: center;
+  
+  }
+  .p-intro-pricing{
+    padding-bottom: 50px;
+  
+  }
+  .p-pricing{
+    font-family: "Open Sans Condensed";
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 100;
+    text-align: left;
+  }
+  #pCurrBook{
+    padding-top: 10px;;
+  }
+  .h2-pricing{
+    text-align: center;
+  }
+  .Volunteer_name .info{
+    font-family: "Abel";
+    font-size: 2.5rem;
+  }
+  .name{
+    padding-top: 20px;
+  }
+  .photo{
+    width: 250px;
+    height: 250px;
+    border: 5px solid #555;
+    border-radius: 15px;
+  }
+  .photo_student{
+    width: 150px;
+    height: 150px;
+    border: 5px solid #555;
+  
+  }
+  .photo_student_div{
+    padding: 30px;
+  }
+  .photo_volunteer{
+    padding: 20px;
+    padding-right: 60px;
+  }
+  .humanity_pic{
+    width: 100px;
+    height: 100px;
+  }
+  .info{
+    font-family:"Roboto";
+    color: white;
+  }
+  .accept{
+    margin: 20px;
+    width: 40%;
+  }
+  .extend{
+    margin: 20px;
+    width: fill_parent;
+  }
+  .details-table{
+    padding: 20px;
+  }
+  .align{
+    text-align:left;
+  }
+  
+  #imgHum{
+    border-radius: 8px;
+    box-shadow: #141E27;
+  }
+  
+  #aMoreInfo{
+    padding-left: 180px;
+  }
+  
+  #Studentaccept{
+    padding: 10px;
+  }
+  
+  #aMoreInfo{
+    color: #0096ff ;
+  }
+  
+  #aMoreInfo:hover{
+    color: #000000;
+  }
+  
+  
+  .daily{
+    padding: 20px;
+    padding-top: 80px;
+  }
+  
+  .imgShow{
+    width: 40vw;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .yoga{
+    padding: 30px;
+    width: 500px;
+  }
+  .para{
+    padding-right: 600px;
+    padding-top: 30px;
+  }
+  .h2-extra{
+    font-size: 3.2rem;
+    padding: 30px;
+  }
+  
