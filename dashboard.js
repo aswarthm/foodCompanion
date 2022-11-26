@@ -119,12 +119,16 @@ const updateUI = async () => {
 var url_string = (window.location.href);
 var url = new URL(url_string);
 var userData = String(url.searchParams.get("id"))
-const snapshot = await get(child(dbRef, '/heathCare/patients/'+ userData))
+
+console.log(userData)
+
+get(child(dbRef, '/healthCare/patients/'+ userData)).then((snapshot) => {
 console.log(snapshot.val())
 document.getElementById("volName").innerHTML="Name: "+snapshot.val().name
 document.getElementById("Weight").innerHTML="Weight: "+snapshot.val().weight
 document.getElementById("Height").innerHTML="Height: "+snapshot.val().height
-// document.getElementById("height").innerHTML=snapshot.val()  .height
+})
+
 document.getElementById("glow0").addEventListener("click",function(){
   var time0=document.getElementById("time0").value;
   if(time0!=null){

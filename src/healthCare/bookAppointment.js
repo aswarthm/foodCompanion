@@ -118,8 +118,7 @@ function bookAppointment(){
     
     get(child(dbRef, "/healthCare/patients/"+patient )).then((snapshot) => {  
       var param = parseInt(Math.random()*100000);
-      console.log(param)
-      console.log(snapshot.val())  
+      
       set(ref(database, "/healthCare/patients/" + param +"/"), snapshot.val())
 
       var url = 'http://127.0.0.1:5500/src/patientOverview.html?id=' + param
