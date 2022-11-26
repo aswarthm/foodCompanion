@@ -10,6 +10,7 @@
     color: rgb(170, 18, 18);
     font-size: 20;
     padding-bottom: 30px;
+    border-radius: 10px;
 }
 
 .container{
@@ -21,11 +22,13 @@
 .input{
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.4);
     margin:8px;
+    border-radius: 10px;
     background-color: antiquewhite;
 }
 
 .button{
     margin-bottom: 20px;
+    border-radius: 10px;
     background-color: rgba(0, 89, 255, 0.734);
 }
 body{
@@ -38,3 +41,25 @@ body{
 .button{
   color: white
 }
+#username{
+    border-radius: 10px;
+}
+#password{
+    border-radius: 10px;
+}
+#dob{
+    border-radius: 10px;
+}
+#height{
+    border-radius: 10px;
+}
+#weight{
+    border-radius: 10px;
+}
+#name{
+    border-radius: 10px;
+}
+#quali{
+        border-radius: 10px;
+    }
+
