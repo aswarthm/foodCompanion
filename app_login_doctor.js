@@ -103,7 +103,7 @@ const updateUI = async () => {
     // ).innerHTML = await auth0Client.getTokenSilently();
     userData = await auth0Client.getUser()
     //console.log(userData.sub)
-    const snapshot = await get(child(dbRef, '/temp/doctors/'+ userData.sub))
+    const snapshot = await get(child(dbRef, '/healthCare/doctors/'+ userData.sub))
     console.log(userData.sub)
     if(snapshot.val()){
         window.location.replace("http://localhost:5500/src/healthCare/doctorPage.html?id="+userData.sub)

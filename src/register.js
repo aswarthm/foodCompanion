@@ -51,7 +51,7 @@ function check(form,fields){
             var userData = String(url.searchParams.get("id"))
             console.log(url);
 
-            set(ref(db,'/temp/users/'+ userData),{
+            set(ref(db,'/healthCare/patients/'+ userData),{
                 "email":list_values[0],
                 "password":list_values[1],
                 "name":list_values[2],
