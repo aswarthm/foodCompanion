@@ -107,20 +107,17 @@ function bookAppointment(){
         }
       }
     }
-
-    
     doctorData[month_year][date][time] = {"patientID": patient}
     console.log(doctorData)
 
     set(ref(database, "/healthCare/doctors/" + doctor +"/"), doctorData)
+    drawWeekly(doctor)
 
+    var param = parseInt(Math.random()*100000);
 
-///DONT ALLOW TO GO BACK IN TIME> ---CHECK IF TIME > CUR TIME 
+  //   get(child(dbRef, "/healthCare/patients/"+patient )).then((snapshot) => {    
 
-
-  })
-
-
+  // })
 
   //convert time to proper format
   //take date
@@ -130,7 +127,9 @@ function bookAppointment(){
   //Change firebase
 
   //ALSO CHECK num of appmts
-}
+})}
+
+
 
 function drawWeekly(doctor) {
   get(child(dbRef, "/healthCare")).then((snapshot) => {
@@ -180,7 +179,9 @@ function drawWeekly(doctor) {
 
 
 
+
 const main = async () => {
+  console.log(parseInt(Math.random()*100000))
 
   document.getElementById("dateInput").value = new Date().getFullYear() + "-" + (parseInt(new Date().getMonth())+1)  + "-" + new Date().getDate()
   var hour = new Date().toTimeString().split(' ')[0].split(':')[0]
