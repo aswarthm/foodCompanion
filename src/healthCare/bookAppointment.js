@@ -41,7 +41,7 @@ const dbRef = ref(getDatabase());
 
 
 var doctor = "Sindhu"
-var patient = "lol"
+var patient = 30
 
 function populateDropdown(){
     //id is doct name
@@ -78,10 +78,38 @@ function bookAppointment(){
   var month_year = dateArr[1] + "-" + dateArr[0]
   var date = dateArr[2]
 
+  if(new Date(dateArr[0], dateArr[1] - 1, dateArr[2] , timeArr[0], timeArr[1],0 ).valueOf() < new Date().valueOf()){
+    alert("Time travel is forbidden");
+    return;
+  }
+
+  //give alert and return
   console.log(doctor, month_year, date, time)
 
-  get(child(dbRef, "/healthCare/doctors")).then((snapshot) => {
 
+  var flag = 1;
+  get(child(dbRef, "/healthCare/doctors/" + doctor)).then((snapshot) => {
+    var doctorData = snapshot.val()
+
+    if (doctorData[month_year] == undefined){
+      //set(ref(database, "/healthCare/doctors/" + doctor + "/" + ), 1)    ///ends with a /
+
+    }
+    if (doctorData[month_year][date] == undefined){
+       // make it
+    }
+
+    //if ( )
+
+    for ( var t in doctorData[month_year][date] ){
+      if ( Math.abs(t-time)<=appointmentMins ){
+        alert("Slot Unavailable")
+        return
+      }
+    }
+    
+
+///DONT ALLOW TO GO BACK IN TIME> ---CHECK IF TIME > CUR TIME 
 
 
   })
@@ -147,9 +175,13 @@ function drawWeekly(doctor) {
 
 
 const main = async () => {
-  document.getElementById("dateInput").value = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDate()
+
+  document.getElementById("dateInput").value = new Date().getFullYear() + "-" + (parseInt(new Date().getMonth())+1)  + "-" + new Date().getDate()
   var hour = new Date().toTimeString().split(' ')[0].split(':')[0]
   document.getElementById("timeInput").value = ((parseInt(hour) + 1) +":"+ "00").padStart(5,'0')
+
+  console.log(document.getElementById("dateInput").value)
+
 
 
   
