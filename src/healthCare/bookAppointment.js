@@ -115,9 +115,9 @@ function bookAppointment(){
 
     var param = parseInt(Math.random()*100000);
 
-    get(child(dbRef, "/healthCare/patients/"+patient )).then((snapshot) => {    
+  //   get(child(dbRef, "/healthCare/patients/"+patient )).then((snapshot) => {    
 
-  })
+  // })
 
   //convert time to proper format
   //take date
@@ -127,14 +127,9 @@ function bookAppointment(){
   //Change firebase
 
   //ALSO CHECK num of appmts
-}
-
-function getQR(){
-  
+})}
 
 
-  
-}
 
 function drawWeekly(doctor) {
   get(child(dbRef, "/healthCare")).then((snapshot) => {

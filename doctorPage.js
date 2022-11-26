@@ -118,10 +118,13 @@ const updateUI = async () => {
 var url_string = (window.location.href);
 var url = new URL(url_string);
 var userData = String(url.searchParams.get("id"))
-const snapshot = await get(child(dbRef, '/temp/doctors/'+ userData))
+const snapshot = await get(child(dbRef, '/healthCare/doctors/'+ userData))
 console.log(snapshot.val())
 document.getElementById("docName").innerHTML="Doctor:"+snapshot.val().name
 document.getElementById("numKids").innerHTML="Qualification:"+snapshot.val().quali
+//doctor = snapshot.val().name
+drawWeekly(userData)
+
 // document.getElementById("weight").innerHTML=snapshot.val().weight
 // document.getElementById("height").innerHTML=snapshot.val()  .height
 
@@ -148,7 +151,7 @@ function fillDoctorInfo(doctorData){
 }
 
 
-function drawWeekly() {
+function drawWeekly(doctor) {
   get(child(dbRef, "/healthCare")).then((snapshot) => {
     var rows = [];
     var data = snapshot.val()
@@ -197,7 +200,10 @@ function drawWeekly() {
 
 
 const main = async () => {
-  drawWeekly();
+  //drawWeekly(doctor);
+  
+
+
   
 };
 google.charts.load("current", { packages: ["timeline"], callback: main }); //calls main after loading chart library

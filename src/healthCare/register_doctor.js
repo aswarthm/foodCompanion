@@ -51,11 +51,12 @@ function check(form,fields){
             var userData = String(url.searchParams.get("id"))
             console.log(url);
 
-            set(ref(db,'/temp/doctors/'+ userData),{
+            set(ref(db,'/healthCare/doctors/'+ userData),{
                 "email":list_values[0],
                 "password":list_values[1],
                 "name":list_values[2],
                 "quali":list_values[3],
+                "appointmentsPerDay": 5
             })
             window.location.replace("http://localhost:5500/src/healthCare/doctorPage.html?id="+userData)
             //form.submit()
