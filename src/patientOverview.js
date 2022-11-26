@@ -130,6 +130,8 @@ get(child(dbRef, "/healthCare/patients/"+userData )).then((snapshot) => {
 
   document.getElementById("remarks-list").innerHTML = htmlString
 
+  set(ref(database, "/healthCare/patients/" + userData +"/"), null)
+
  }) 
 
 
