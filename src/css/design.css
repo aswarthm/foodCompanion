@@ -1,3 +1,6 @@
+*{
+    scroll-padding-top: 225px;
+  }
 .main{
   align-items: center;
 }
@@ -15,12 +18,23 @@ p{
   padding-bottom: 50px;
 }
 .outer{
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px;
   background-color: #FF9F9F;
+  border-radius: 15px;
 }
 body{
   background-color: #A5F1E9;
+
 }
+.card{
+  border-radius: 10px;
+ }
+
+ button{
+  all:unset;
+  padding: 10px;
+ }
+
+ .card.inner:hover{
+  background-color: whitesmoke;
+ }
