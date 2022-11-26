@@ -1,3 +1,6 @@
+*{
+    scroll-padding-top: 225px;
+  }
 .main{
   align-items: center;
 }
@@ -21,6 +24,7 @@ p{
 }
 body{
   background-color: #A5F1E9;
+
 }
 .card{
   border-radius: 10px;
