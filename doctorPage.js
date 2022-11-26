@@ -120,8 +120,8 @@ var url = new URL(url_string);
 var userData = String(url.searchParams.get("id"))
 const snapshot = await get(child(dbRef, '/healthCare/doctors/'+ userData))
 console.log(snapshot.val())
-document.getElementById("docName").innerHTML="Doctor:"+snapshot.val().name
-document.getElementById("numKids").innerHTML="Qualification:"+snapshot.val().quali
+document.getElementById("docName").innerHTML="Doctor: "+snapshot.val().name
+document.getElementById("numKids").innerHTML="Qualification: "+snapshot.val().quali
 //doctor = snapshot.val().name
 drawWeekly(userData)
 

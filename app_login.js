@@ -116,7 +116,7 @@ const updateUI = async () => {
     userData = await auth0Client.getUser()
     //console.log(userData.sub)
     if(localStorage.getItem("auth")=="btn-login-customer"){
-      const snapshot = await get(child(dbRef, '/temp/users/'+ userData.sub))
+      const snapshot = await get(child(dbRef, '/healthCare/patients/'+ userData.sub))
     console.log(userData.sub)
     if(snapshot.val()){
         window.location.replace("http://localhost:5500/src/index_login1.html?id="+userData.sub)
@@ -127,7 +127,7 @@ const updateUI = async () => {
     localStorage.removeItem("auth")
     }
     else if(localStorage.getItem("auth")=="btn-login-doctor"){
-      const snapshot = await get(child(dbRef, '/temp/doctors/'+ userData.sub))
+      const snapshot = await get(child(dbRef, '/healthCare/doctors/'+ userData.sub))
     console.log(userData.sub)
     if(snapshot.val()){
         window.location.replace("http://localhost:5500/src/healthCare/doctorPage.html?id="+userData.sub)
