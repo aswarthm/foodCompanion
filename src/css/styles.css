@@ -5,6 +5,8 @@
 html,body{
   margin: 0;
   padding: 0;
+  background-color: white
+  ;
 }
 #title{
   background-color: #5463FF;
@@ -79,7 +81,7 @@ html,body{
   margin-left: 50px;
 }
 .card-header{
-  background-color: #0096FF;
+  background-color: #5463FF;
   text-align: center;
 
 }
