@@ -66,7 +66,7 @@ void loop() {
     Serial.println(hrMin);
     Serial.println();
     for (int i = 0; i < 3; i++) {
-      Firebase.getString(firebaseData, "/lmao/" + String(i));
+      Firebase.getString(firebaseData, "/tap" + String(i));
       String temp = firebaseData.stringData();
       tabTimes[i] = temp;
     }
@@ -80,8 +80,34 @@ void loop() {
       }
     }
   }
-    //Serial.println(digitalRead(sw));
+
+  for (int i = 0; i < 3; i++) {
+    Firebase.getString(firebaseData, "/glow" + String(i));
+//    Serial.println("/glow" + String(i));
+//    Serial.println(firebaseData.stringData());
+    if (firebaseData.stringData().equals("1")) {
+      digitalWrite(leds[i], HIGH);
+      delay(1000);
+      digitalWrite(leds[i], LOW);
+      delay(500);
+      digitalWrite(leds[i], HIGH);
+      delay(1000);
+      digitalWrite(leds[i], LOW);
+      delay(500);
+      digitalWrite(leds[i], HIGH);
+      delay(1000);
+      digitalWrite(leds[i], LOW);
+      delay(500);
+      digitalWrite(leds[i], HIGH);
+      delay(1000);
+      digitalWrite(leds[i], LOW);
+      Firebase.setString(firebaseData, "/glow" + String(i), "0");
+    }
+  }
+
+  //Serial.println(digitalRead(sw));
   if (digitalRead(sw)) {
+    Serial.println("hi");
     disabled = 1;
     for (int i = 0; i < 3; i++) {
       digitalWrite(leds[i], LOW);
