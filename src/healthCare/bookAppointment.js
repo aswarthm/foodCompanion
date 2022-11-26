@@ -53,7 +53,7 @@ function populateDropdown(){
         var htmlString = '<option value="0">'+ 'Select Doctor' +'</option>'
 
         for (var doctorName in data){
-            htmlString += '<option value="' + doctorName + '">'+ doctorName +'</option>'
+            htmlString += '<option value="' + data[doctorName]["name"] + '">'+ data[doctorName]["name"] +'</option>'
         }
         document.getElementById("dropDown").innerHTML = htmlString
         makeDropdownWork()
