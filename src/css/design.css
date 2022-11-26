@@ -1,0 +1,26 @@
+.main{
+  align-items: center;
+}
+.title{
+  text-align: center;
+}
+h2{
+  font-size: 4rem;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  font-family: "League Spartan"
+}
+p{
+  font-size: 1.5rem;
+  padding-bottom: 50px;
+}
+.outer{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #FF9F9F;
+}
+body{
+  background-color: #A5F1E9;
+}
