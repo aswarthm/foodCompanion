@@ -20,7 +20,7 @@
     <section id="title">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg">
-          <img src="images/logo.png" alt="" class="humanity_pic" id="imgHum">	
+          <img src="images/logo.png" alt="" class="humanity_pic" id="imgHum">
           <h1 class="h1-title">Health Companion</h1>
 
           <button class="navbar-toggler navbar-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
               <li class="nav-item">
                 <a class="nav-link topics" href="./healthCare/bookAppointment.html">Book Doctor Appointment</a>
               </li>
-             
+
             </ul>
           </div>
         </nav>
@@ -63,7 +63,25 @@
       </div>
     </section>
     <button type="submit" id="logout" class="btn btn-lg btn-primary">logout</button>
-    <div class=""style="clear:both">
+    <div class="card outer">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card inner">
+            <label for="time0" class="label">Enter time for tablet box1</label>
+            <input type="time" name="" value="" id="time0">
+            <button type="button" name="button" class="glow" id="glow0">Glow</button>
+            <button type="button" name="button" class="glow" id="set0">Set</button>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card inner">
+            <label for="time1" class="label">Enter time for tablet box2</label>
+            <input type="time" name="" value="" id="time1">
+            <button type="button" name="button" class="glow" id="glow1">Glow</button>
+            <button type="button" name="button" class="glow" id="set1">Set</button>
+          </div>
+        </div>
+      </div>
     </div>
     <section>
       <div id="timeline" style="width:95%; padding-left:34px; padding-right: 20px; height: 400px;"></div>
@@ -73,7 +91,5 @@
     <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-    <script type="module" src="app.js"></script>
-    <script type="text/JavaScript" src="main.js"></script>
   </body>
 </html>
