@@ -80,7 +80,7 @@ void loop() {
       }
     }
   }
-  //  Serial.println(temp);
+    //Serial.println(digitalRead(sw));
   if (digitalRead(sw)) {
     disabled = 1;
     for (int i = 0; i < 3; i++) {

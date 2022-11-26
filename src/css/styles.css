@@ -197,6 +197,7 @@ html,body{
 .btn{
   margin-top: 20px;
 }
+
 #logout{
   margin-bottom: 90px;
 }
@@ -228,3 +229,11 @@ html,body{
   font-family: "League Spartan";
   font-size: 1.2rem;
 }
+
+#qrimg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
