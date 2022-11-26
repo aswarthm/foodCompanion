@@ -41,7 +41,7 @@ const dbRef = ref(getDatabase());
 
 
 var doctor = "Sindhu"
-var patient = 30
+var patient = 15
 
 function populateDropdown(){
     //id is doct name
@@ -92,22 +92,28 @@ function bookAppointment(){
     var doctorData = snapshot.val()
 
     if (doctorData[month_year] == undefined){
-      //set(ref(database, "/healthCare/doctors/" + doctor + "/" + ), 1)    ///ends with a /
+      doctorData[month_year] = {}   ///ends with a /
 
     }
     if (doctorData[month_year][date] == undefined){
-       // make it
+      doctorData[month_year][date] = {}
     }
 
-    //if ( )
-
-    for ( var t in doctorData[month_year][date] ){
-      if ( Math.abs(t-time)<=appointmentMins ){
-        alert("Slot Unavailable")
-        return
+    else{
+      for (var t in doctorData[month_year][date] ){
+        if ( Math.abs(t-time)<=appointmentMins ){
+          alert("Slot Unavailable")
+          return
+        }
       }
     }
+
     
+    doctorData[month_year][date][time] = {"patientID": patient}
+    console.log(doctorData)
+
+    set(ref(database, "/healthCare/doctors/" + doctor +"/"), doctorData)
+
 
 ///DONT ALLOW TO GO BACK IN TIME> ---CHECK IF TIME > CUR TIME 
 
@@ -181,6 +187,10 @@ const main = async () => {
   document.getElementById("timeInput").value = ((parseInt(hour) + 1) +":"+ "00").padStart(5,'0')
 
   console.log(document.getElementById("dateInput").value)
+
+  var tessst = {}
+  tessst["lol"] = 1;
+  console.log(tessst)
 
 
 
