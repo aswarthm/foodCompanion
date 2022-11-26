@@ -1,4 +1,6 @@
 // Import the functions you need from the SDKs you need
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
 import {
   getDatabase,
@@ -113,11 +115,29 @@ function bookAppointment(){
     set(ref(database, "/healthCare/doctors/" + doctor +"/"), doctorData)
     drawWeekly(doctor)
 
-    var param = parseInt(Math.random()*100000);
+    document.getElementById("getQR").addEventListener("click", function(){
+      get(child(dbRef, "/healthCare/patients/"+patient )).then((snapshot) => {  
+        var param = parseInt(Math.random()*100000);
+        console.log(param)
+        
+        set(ref(database, "/healthCare/patients/" + param +"/"), snapshot.val())
+  
+        var url = 'http://127.0.0.1:5500/src/patientOverview.html?id=' + param
+        //window.open(url)
+        document.getElementById("qrimg").src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=' + url
 
-  //   get(child(dbRef, "/healthCare/patients/"+patient )).then((snapshot) => {    
+    })
+    
+    
 
-  // })
+
+      
+
+
+      //twilio send param
+      //make qr with param?
+
+  })
 
   //convert time to proper format
   //take date

@@ -24,7 +24,6 @@ const firebaseConfig = {
 
 
   const dbRef = ref(getDatabase());
-  const db= getDatabase();
 
 
 let auth0Client = null;
@@ -71,10 +70,7 @@ window.onload = async () => {
   // }
 };
 
-document.getElementById("logout").addEventListener("click",function(){
-  console.log("clicccc")
-  logout();
-})
+
 
 
 const login = async () => {
@@ -119,57 +115,22 @@ const updateUI = async () => {
 var url_string = (window.location.href);
 var url = new URL(url_string);
 var userData = String(url.searchParams.get("id"))
-
 console.log(userData)
 
-get(child(dbRef, '/healthCare/patients/'+ userData)).then((snapshot) => {
-console.log(snapshot.val())
-document.getElementById("volName").innerHTML="Name: "+snapshot.val().name
-document.getElementById("Weight").innerHTML="Weight: "+snapshot.val().weight
-document.getElementById("Height").innerHTML="Height: "+snapshot.val().height
-})
+get(child(dbRef, "/healthCare/patients/"+userData )).then((snapshot) => {
+  console.log(snapshot.val())
+  document.getElementById("volName").innerHTML="Name: "+snapshot.val().name
+  document.getElementById("Weight").innerHTML="Weight: "+snapshot.val().weight
+  document.getElementById("Height").innerHTML="Height: "+snapshot.val().height
+  
+  var htmlString = ""
+  for(let i=0; i< snapshot.val()["remarks"].length; i++ ){
+    htmlString += '<li>' + snapshot.val()["remarks"][i] + '</li>'
+  }
 
-document.getElementById("glow0").addEventListener("click",function(){
-  var time0=document.getElementById("time0").value;
-  if(time0!=null){
-    set(ref(db,"glow0"),"1")
-  }
-})
-document.getElementById("set0").addEventListener("click",function(){
-  var time0=document.getElementById("time0").value;
-  if(time0!=null){
-    console.log(time0)
-    var hrs=time0.slice(0,2)
-    var min=time0.slice(3)
-    hrs=parseInt(hrs)
-    min=parseInt(min)
-    console.log(hrs)
-    console.log(min)
-    var ans=String(hrs)+String(min)
-    console.log(ans)
-    set(ref(db,"tap0"),ans)
-  }
-})
-document.getElementById("glow1").addEventListener("click",function(){
-  var time1=document.getElementById("time1").value;
-  if(time1!=null){
-    set(ref(db,"glow1"),"1")
-  }
-})
-document.getElementById("set1").addEventListener("click",function(){
-  var time1=document.getElementById("time1").value;
-  if(time1!=null){
-    console.log(time0)
-    var hrs=time1.slice(0,2)
-    var min=time1.slice(3)
-    hrs=parseInt(hrs)
-    min=parseInt(min)
-    console.log(hrs)
-    console.log(min)
-    var ans=String(hrs)+String(min)
-    console.log(ans)
-    set(ref(db,"tap1"),ans)
-  }
-})
+  document.getElementById("remarks-list").innerHTML = htmlString
+
+ }) 
+
 
 
