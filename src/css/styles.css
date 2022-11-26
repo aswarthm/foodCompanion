@@ -196,3 +196,10 @@ html,body{
 .btn{
   margin-top: 20px;
 }
+
+#qrimg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}

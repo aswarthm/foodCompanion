@@ -70,10 +70,7 @@ window.onload = async () => {
   // }
 };
 
-document.getElementById("logout").addEventListener("click",function(){
-  console.log("clicccc")
-  logout();
-})
+
 
 
 const login = async () => {
@@ -118,10 +115,22 @@ const updateUI = async () => {
 var url_string = (window.location.href);
 var url = new URL(url_string);
 var userData = String(url.searchParams.get("id"))
-const snapshot = await get(child(dbRef, '/heathCare/patients/'+ userData))
-console.log(snapshot.val())
-document.getElementById("volName").innerHTML="Name: "+snapshot.val().name
-document.getElementById("Weight").innerHTML="Weight: "+snapshot.val().weight
-document.getElementById("Height").innerHTML="Height: "+snapshot.val().height
-// document.getElementById("height").innerHTML=snapshot.val()  .height
+console.log(userData)
+
+get(child(dbRef, "/healthCare/patients/"+userData )).then((snapshot) => {
+  console.log(snapshot.val())
+  document.getElementById("volName").innerHTML="Name: "+snapshot.val().name
+  document.getElementById("Weight").innerHTML="Weight: "+snapshot.val().weight
+  document.getElementById("Height").innerHTML="Height: "+snapshot.val().height
+  
+  var htmlString = ""
+  for(let i=0; i< snapshot.val()["remarks"].length; i++ ){
+    htmlString += '<li>' + snapshot.val()["remarks"][i] + '</li>'
+  }
+
+  document.getElementById("remarks-list").innerHTML = htmlString
+
+ }) 
+
+
 
