@@ -88,11 +88,22 @@ function bookAppointment(){
 
   //give alert and return
   console.log(doctor, month_year, date, time)
+  
 
 
   var flag = 1;
-  get(child(dbRef, "/healthCare/doctors/" + doctor)).then((snapshot) => {
-    var doctorData = snapshot.val()
+  get(child(dbRef, "/healthCare/doctors")).then((snapshot) => {
+    
+    var data = snapshot.val()
+
+    for (var idkwhat in data){
+      if (data[idkwhat]["name"] == doctor)
+      { //doctor = idkwhat
+        var doctorData = data[idkwhat]
+        break;
+      }
+    }
+    //var doctorData = snapshot.val()[doctor]
 
     if (doctorData[month_year] == undefined){
       doctorData[month_year] = {}   ///ends with a /
@@ -123,7 +134,7 @@ function bookAppointment(){
         
         set(ref(database, "/healthCare/patients/" + param +"/"), snapshot.val())
   
-        var url = 'http://127.0.0.1:5500/src/patientOverview.html?id=' + param
+        var url = window.location.origin+'/src/patientOverview.html?id=' + param
         //window.open(url)
         document.getElementById("qrimg").src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=' + url
 
@@ -152,7 +163,7 @@ function bookAppointment(){
 
 
 
-function drawWeekly(doctor) {
+function drawWeekly(doctor) { ///////pass doct name
   console.log(doctor)
 
   get(child(dbRef, "/healthCare")).then((snapshot) => {
