@@ -143,9 +143,6 @@ function bookAppointment(){
     
 
 
-      
-
-
       //twilio send param
       //make qr with param?
 
