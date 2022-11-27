@@ -63,6 +63,7 @@ function populateDropdown(){
 function makeDropdownWork(){
   document.getElementById("dropDown").addEventListener("change", function(){
     //console.log(document.getElementById("dropDown").value)
+
     drawWeekly(document.getElementById("dropDown").value)
     document.getElementById("btnSearch").addEventListener("click", function(){
       bookAppointment()
@@ -152,9 +153,19 @@ function bookAppointment(){
 
 
 function drawWeekly(doctor) {
+  console.log(doctor)
+
   get(child(dbRef, "/healthCare")).then((snapshot) => {
     var rows = [];
     var data = snapshot.val()
+    
+    for (var idkwhat in data["doctors"]){
+      if (data["doctors"][idkwhat]["name"] == doctor)
+      { doctor = idkwhat
+        break;
+      }
+    }
+
     var doctorData = data["doctors"][doctor];
 
     //console.log(doctorData)
@@ -166,6 +177,7 @@ function drawWeekly(doctor) {
       var month_year = tempDate.getMonth() + 1 + "-" + tempDate.getFullYear();
       var date = tempDate.getDate();
       //console.log(month_year, date, doctorData[month_year][date])
+
       if (doctorData[month_year] == undefined){
         continue;
       }
