@@ -86,7 +86,7 @@ const login = async () => {
 const logout = () => {
   auth0Client.logout({
     logoutParams: {
-      returnTo: window.location.replace("http://localhost:5500/register.html")
+      returnTo: window.location.replace("./register.html")
     }
   });
 };

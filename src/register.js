@@ -59,7 +59,7 @@ function check(form,fields){
                 "weight":list_values[4],
                 "height":list_values[5]
             })
-            window.location.replace("http://localhost:5500/src/index_login1.html?id="+userData);
+            window.location.replace("./src/index_login1.html?id="+userData);
             //form.submit()
         }
     })

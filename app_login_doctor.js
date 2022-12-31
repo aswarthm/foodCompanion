@@ -106,10 +106,10 @@ const updateUI = async () => {
     const snapshot = await get(child(dbRef, '/healthCare/doctors/'+ userData.sub))
     console.log(userData.sub)
     if(snapshot.val()){
-        window.location.replace("http://localhost:5500/src/healthCare/doctorPage.html?id="+userData.sub)
+        window.location.replace("./src/healthCare/doctorPage.html?id="+userData.sub)
     }
     else{
-        window.location.replace("http://localhost:5500/src//healthCare/register_doctor.html?id="+userData.sub)
+        window.location.replace("./src/healthCare/register_doctor.html?id="+userData.sub)
     }
     //document.getElementById("ipt-user-profile").textContent = userData.sub
 
