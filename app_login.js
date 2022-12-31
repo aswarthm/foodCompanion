@@ -131,7 +131,7 @@ const updateUI = async () => {
       console.log(userData.sub);
       if (snapshot.val()) {
         window.location.replace(
-          ".src/healthCare/doctorPage.html?id=" +
+          "./src/healthCare/doctorPage.html?id=" +
             userData.sub
         );
       } else {
