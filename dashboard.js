@@ -82,7 +82,7 @@ const login = async () => {
 const logout = () => {
   auth0Client.logout({
     logoutParams: {
-      returnTo: window.location.replace("./index.html"),
+      returnTo: window.location.replace("./"),
     },
   });
 };
