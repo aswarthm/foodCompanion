@@ -117,7 +117,7 @@ function bookAppointment(){
       for (var t in doctorData[month_year][date] ){
         if ( Math.abs(t-time)<=appointmentMins ){
           alert("Slot Unavailable")
-          return
+          break;
         }
       }
     }
@@ -179,11 +179,11 @@ function drawWeekly(doctor) { ///////pass doct name
     //console.log(doctorData)
     var curDate = new Date();
 
-    for(let i=0; i<7; i++){
+    for(var i=0; i<7; i++){
       var tempDate = new Date(curDate.valueOf() + i * 24 * 60 * 60 * 1000);
       //console.log(tempDate.getDate(), tempDate.getMonth() + 1);
-      var month_year = tempDate.getMonth() + 1 + "-" + tempDate.getFullYear();
-      var date = tempDate.getDate();
+      var month_year = (tempDate.getMonth() + 1).toString().padStart(2, '0') + "-" + tempDate.getFullYear();
+      var date = tempDate.getDate().toString().padStart(2, '0');
       //console.log(month_year, date, doctorData[month_year][date])
 
       if (doctorData[month_year] == undefined){
@@ -192,7 +192,7 @@ function drawWeekly(doctor) { ///////pass doct name
       if (doctorData[month_year][date] == undefined){
         continue;
       }
-
+      console.log(doctorData[month_year][date])
       for (var t in doctorData[month_year][date]){
         t = parseInt(t)
         var patientID = doctorData[month_year][date][t]["patientID"]
@@ -223,19 +223,12 @@ function drawWeekly(doctor) { ///////pass doct name
 const main = async () => {
   console.log(parseInt(Math.random()*100000))
 
-  document.getElementById("dateInput").value = new Date().getFullYear() + "-" + (parseInt(new Date().getMonth())+1)  + "-" + new Date().getDate()
+  document.getElementById("dateInput").value = new Date().getFullYear() + "-" + (parseInt(new Date().getMonth())+1).toString().padStart(2, '0')  + "-" + new Date().getDate().toString().padStart(2, '0')
   var hour = new Date().toTimeString().split(' ')[0].split(':')[0]
   document.getElementById("timeInput").value = ((parseInt(hour) + 1) +":"+ "00").padStart(5,'0')
 
   console.log(document.getElementById("dateInput").value)
 
-  var tessst = {}
-  tessst["lol"] = 1;
-  console.log(tessst)
-
-
-
-  
   populateDropdown()
   //makeDropdownWork()
   //drawWeekly();
