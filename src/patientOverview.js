@@ -122,13 +122,15 @@ get(child(dbRef, "/healthCare/patients/"+userData )).then((snapshot) => {
   document.getElementById("volName").innerHTML="Name: "+snapshot.val().name
   document.getElementById("Weight").innerHTML="Weight: "+snapshot.val().weight
   document.getElementById("Height").innerHTML="Height: "+snapshot.val().height
-  
+  var remarks = ["Allergic to Penicillin", "Previous history of Asthma", "Diagnosed from Diabetes"]
   var htmlString = ""
-  for(let i=0; i< snapshot.val()["remarks"].length; i++ ){
-    htmlString += '<li>' + snapshot.val()["remarks"][i] + '</li>'
+  for(let i=0; i< remarks.length; i++ ){
+    htmlString += '<li>' + remarks[i] + '</li>'
   }
 
-  document.getElementById("remarks-list").innerHTML = htmlString
+  if(snapshot.name){
+    document.getElementById("remarks-list").innerHTML = htmlString
+  }
 
   set(ref(database, "/healthCare/patients/" + userData +"/"), null)
 
