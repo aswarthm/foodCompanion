@@ -128,7 +128,7 @@ get(child(dbRef, "/healthCare/patients/"+userData )).then((snapshot) => {
     htmlString += '<li>' + remarks[i] + '</li>'
   }
 
-  if(snapshot.name){
+  if(snapshot.val().name != null){
     document.getElementById("remarks-list").innerHTML = htmlString
   }
 
