@@ -58,7 +58,7 @@ function check(form,fields){
                 "quali":list_values[3],
                 "appointmentsPerDay": 5
             })
-            window.location.replace("./src/healthCare/doctorPage.html?id="+userData)
+            window.location.replace("./doctorPage.html?id="+userData)
             //form.submit()
         }
     })
