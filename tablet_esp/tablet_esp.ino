@@ -4,9 +4,9 @@
 #include <WiFiUdp.h>
 
 
-int leds[3] = {D0, D1, D2};
+int leds[3] = {D0, D1};
 int buzzer = D3;
-int sw = D5;
+int sw = D2;
 
 
 #define FIREBASE_HOST "biologicalwellbeing-default-rtdb.firebaseio.com/" //Without http:// or https:// schemes
@@ -33,7 +33,7 @@ void setup()
 
   Serial.begin(9600);
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 2; i++) {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(buzzer, OUTPUT);
@@ -58,33 +58,25 @@ void setup()
   timeClient.setTimeOffset((5 * 60 + 30) * 60);
 }
 void loop() {
-  //Firebase.set(firebaseData, "/users/sindhu/" + monthYr + "/" + curDay + "/" + hrMin, id);
 
   getTime();
   if (!hrMin.equals(prevTime)) {
     prevTime = hrMin;
     Serial.println(hrMin);
     Serial.println();
-    for (int i = 0; i < 3; i++) {
-      Firebase.getString(firebaseData, "/tap" + String(i));
-      String temp = firebaseData.stringData();
-      tabTimes[i] = temp;
+    Firebase.getString(firebaseData, "/tap0");
+    String temp = firebaseData.stringData();
+    if (temp == hrMin) {
+      digitalWrite(D0, HIGH);
+      disabled = false;
     }
-    for (int i = 0; i < 3; i++) {
-      Serial.println(tabTimes[i]);
-      if (tabTimes[i] == hrMin) {
-        disabled = 0;
-        if (!disabled) {
-          alert(i);
-        }
-      }
+    if(!disabled){
+      buzz();
     }
   }
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 2; i++) {
     Firebase.getString(firebaseData, "/glow" + String(i));
-//    Serial.println("/glow" + String(i));
-//    Serial.println(firebaseData.stringData());
     if (firebaseData.stringData().equals("1")) {
       digitalWrite(leds[i], HIGH);
       delay(1000);
@@ -109,7 +101,7 @@ void loop() {
   if (digitalRead(sw)) {
     Serial.println("hi");
     disabled = 1;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
       digitalWrite(leds[i], LOW);
     }
   }
