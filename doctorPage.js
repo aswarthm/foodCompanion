@@ -123,7 +123,7 @@ console.log(snapshot.val())
 document.getElementById("docName").innerHTML="Doctor: "+snapshot.val().name
 document.getElementById("numKids").innerHTML="Qualification: "+snapshot.val().quali
 //doctor = snapshot.val().name
-drawWeekly(userData)
+drawWeekly(snapshot.val().name)
 
 // document.getElementById("weight").innerHTML=snapshot.val().weight
 // document.getElementById("height").innerHTML=snapshot.val()  .height
@@ -157,13 +157,13 @@ function drawWeekly(doctor) {
     var data = snapshot.val()
     var doctorData = data["doctors"][doctor];
     fillDoctorInfo(doctorData)
-    //console.log(doctorData)
+    console.log(doctorData)
     var curDate = new Date();
 
     for(let i=0; i<7; i++){
       var tempDate = new Date(curDate.valueOf() + i * 24 * 60 * 60 * 1000);
       //console.log(tempDate.getDate(), tempDate.getMonth() + 1);
-      var month_year = tempDate.getMonth() + 1 + "-" + tempDate.getFullYear();
+      var month_year = String(tempDate.getMonth() + 1).padStart(2, '0') + "-" + String(tempDate.getFullYear()).padStart(2, '0');
       var date = tempDate.getDate();
       //console.log(month_year, date, doctorData[month_year][date])
       if (doctorData[month_year] == undefined){
