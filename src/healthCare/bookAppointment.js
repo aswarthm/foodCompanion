@@ -72,7 +72,7 @@ function makeDropdownWork(){
 }
 
 function bookAppointment(){
-  var doctor = document.getElementById("dropDown").value
+  var doctor = document.getElementById("dropDown").value  //supposed to be name
 
   var timeArr = document.getElementById("timeInput").value.split(":")
   var time = timeArr[0]*60 + parseInt(timeArr[1])
@@ -124,7 +124,7 @@ function bookAppointment(){
     doctorData[month_year][date][time] = {"patientID": patient}
     console.log(doctorData)
 
-    set(ref(database, "/healthCare/doctors/" + doctor +"/"), doctorData)
+    set(ref(database, "/healthCare/doctors/" + idkwhat +"/"), doctorData)
     drawWeekly(doctor)
 
     document.getElementById("getQR").addEventListener("click", function(){
