@@ -80,6 +80,11 @@ function dataURLtoBlob(dataurl) {
 // 	console.log(snapshot.val());
 //  });
 
+var nameInput = document.getElementById('get_portion');
+var fraction;
+
+  console.log(nameInput.value);
+
  function writeToFirebase(dataapi){               //////////
 
   const db = getDatabase();
@@ -88,19 +93,19 @@ function dataURLtoBlob(dataurl) {
 	var date = curDate.getDate()
     var hour_min = curDate.getHours() + "-" + curDate.getMinutes()
 
-    document.getElementById("calories").innerHTML = "Calories : " + parseFloat(dataapi["calories"]).toFixed(1)
-    document.getElementById("proteins").innerHTML = "Protein : " + parseFloat(dataapi["proteins"]).toFixed(1)
-    document.getElementById("fats").innerHTML = "Total Fats : " + parseFloat(dataapi["total_fat"]).toFixed(1)
-    document.getElementById("fatsat").innerHTML = "Saturated Fats : " + parseFloat(dataapi["sat_fat"]).toFixed(1)
-    document.getElementById("sugar").innerHTML = "Sugars : " + parseFloat(dataapi["sugar"]).toFixed(1)
+    document.getElementById("calories").innerHTML = "Calories : " + parseFloat(dataapi["calories"]*fraction).toFixed(1)
+    document.getElementById("proteins").innerHTML = "Protein : " + parseFloat(dataapi["proteins"]*fraction).toFixed(1)
+    document.getElementById("fats").innerHTML = "Total Fats : " + parseFloat(dataapi["total_fat"]*fraction).toFixed(1)
+    document.getElementById("fatsat").innerHTML = "Saturated Fats : " + parseFloat(dataapi["sat_fat"]*fraction).toFixed(1)
+    document.getElementById("sugar").innerHTML = "Sugars : " + parseFloat(dataapi["sugar"]*fraction).toFixed(1)
 
     set(ref(db, "cards/" + dataapi["food_id"]), {
-        "calories": parseFloat(dataapi["calories"]).toFixed(1),
-        "fat" : parseFloat(dataapi["total_fat"]).toFixed(1),
-        "fatsat" : parseFloat(dataapi["sat_fat"]).toFixed(1),
+        "calories": parseFloat(dataapi["calories"]*fraction).toFixed(1),
+        "fat" : parseFloat(dataapi["total_fat"]*fraction).toFixed(1),
+        "fatsat" : parseFloat(dataapi["sat_fat"]*fraction).toFixed(1),
         "name" : dataapi["name"],
-        "proteins": parseFloat(dataapi["proteins"]).toFixed(1),
-        "sugar" : parseFloat(dataapi["sugar"]).toFixed(1)
+        "proteins": parseFloat(dataapi["proteins"]*fraction).toFixed(1),
+        "sugar" : parseFloat(dataapi["sugar"]*fraction).toFixed(1)
 
     })
 
@@ -108,6 +113,8 @@ function dataURLtoBlob(dataurl) {
  }
 
 function getCal(imageId){
+    fraction=nameInput.value;
+
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer "+apiKey);
     myHeaders.append("Content-Type", "application/json");
