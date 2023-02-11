@@ -1,6 +1,6 @@
 var image = document.getElementById("image")
 var submit = document.getElementById("submit")
-var apiKey = "90e1ba7815ee31c248cbfcf44bfe357ca8757b4e"
+var apiKey = "52fce398340b7ba911804680bfca8e404f89ae95"
 var myHeaders = new Headers();
 
 var formdata = new FormData();
