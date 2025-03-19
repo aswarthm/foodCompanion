@@ -26,7 +26,7 @@ document.getElementById("upload").onchange = function (e) {
             redirect: 'follow'
         };
 
-        fetch("https://api.logmeal.es/v2/image/segmentation/complete", requestOptions)
+        fetch("https://api.logmeal.es/v2/image/segmentation/complete/v1.0", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result)
